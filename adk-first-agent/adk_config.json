@@ -1,0 +1,32 @@
+{
+  "agent_name": "rag_agent",
+  "description": "RAG (Retrieval-Augmented Generation) agent that queries a document database using pgvector for semantic search",
+  "version": "1.0.0",
+  "entry_point": "rag_agent.agent:root_agent",
+  "model": "gemini-2.5-flash-lite",
+  "tools": [
+    {
+      "name": "query_rag",
+      "description": "Query the RAG system to retrieve relevant documents based on a question",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "The question or query to search for"
+        },
+        "top_k": {
+          "type": "integer",
+          "description": "Number of relevant documents to retrieve (default: 3)",
+          "default": 3
+        }
+      }
+    }
+  ],
+  "environment_variables": [
+    "DB_HOST",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME",
+    "DB_PORT",
+    "GOOGLE_API_KEY"
+  ]
+}
