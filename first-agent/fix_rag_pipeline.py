@@ -539,25 +539,25 @@ if __name__ == "__main__":
     print(f"📊 Final document count: {final_count}\n")
     
     # Test queries
-    test_queries = [
-        "What are the main causes of climate change?",
-        "How does React work for web development?",
-        "What is Docker and why use containers?",
-        "Tell me about neural networks",
-        "How does Kubernetes help with container orchestration?",
-        "What are the main AWS cloud services?",
-        "How does Git version control work?",
-        "Explain FastAPI for building APIs"
-    ]
+    # test_queries = [
+    #     "What are the main causes of climate change?",
+    #     "How does React work for web development?",
+    #     "What is Docker and why use containers?",
+    #     "Tell me about neural networks",
+    #     "How does Kubernetes help with container orchestration?",
+    #     "What are the main AWS cloud services?",
+    #     "How does Git version control work?",
+    #     "Explain FastAPI for building APIs"
+    # ]
     
-    print("="*60)
-    print("TESTING RAG PIPELINE")
-    print("="*60)
+    # print("="*60)
+    # print("TESTING RAG PIPELINE")
+    # print("="*60)
     
-    for query in test_queries:
-        result = rag.query(query)
-        print(f"\n{'='*60}")
-        print(f"Answer: {result['answer']}")
+    # for query in test_queries:
+    #     result = rag.query(query)
+    #     print(f"\n{'='*60}")
+    #     print(f"Answer: {result['answer']}")
     
     # Close connection
     rag.close()
