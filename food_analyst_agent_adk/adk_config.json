@@ -1,0 +1,32 @@
+{
+  "agent_name": "food_agent",
+  "description": "Indonesian cuisine food analyst that provides menu recommendations and nutritional analysis using RAG with pgvector",
+  "version": "1.0.0",
+  "entry_point": "food_analyst_agent_adk.agent:root_agent",
+  "model": "gemini-2.5-flash-lite",
+  "tools": [
+    {
+      "name": "query_food",
+      "description": "Query the food database to retrieve relevant Indonesian menus based on preferences and calculate nutritional information",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "The food preference or dietary requirement to search for"
+        },
+        "top_k": {
+          "type": "integer",
+          "description": "Number of relevant menus to retrieve (default: 3)",
+          "default": 3
+        }
+      }
+    }
+  ],
+  "environment_variables": [
+    "DB_HOST",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME",
+    "DB_PORT",
+    "GOOGLE_API_KEY"
+  ]
+}
