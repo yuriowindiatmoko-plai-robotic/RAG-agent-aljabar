@@ -31,6 +31,16 @@ def create_food_menu_table():
         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         cursor = conn.cursor()
         
+        try:
+            # Install pgvector extension
+            print("Installing pgvector extension...")
+            cursor.execute("CREATE EXTENSION IF NOT EXISTS vector;")
+            conn.commit()
+            print("✓ pgvector extension ready!")
+        except psycopg2.Error as e:
+            print(f"⚠️ pgvector already installed: {e}")
+            conn.rollback()
+        
         # SQL to create the food_menu table
         create_table_sql = """
         -- Drop table if exists (optional - comment out if you want to preserve existing data)
