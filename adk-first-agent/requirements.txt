@@ -1,5 +1,5 @@
 # Google ADK
-google-adk==1.20.0
+google-adk==1.21.0
 
 # Google GenAI
 google-genai==1.55.0
