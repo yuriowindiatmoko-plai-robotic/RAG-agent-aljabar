@@ -46,7 +46,7 @@ def create_food_menu_table():
         -- Drop table if exists (optional - comment out if you want to preserve existing data)
         -- DROP TABLE IF EXISTS public.food_menu;
 
-        CREATE TABLE IF NOT EXISTS public.food_menu_2 (
+        CREATE TABLE IF NOT EXISTS public.food_menu (
             id serial4 NOT NULL,
             nama_menu text NULL,
             kategori text NULL,
@@ -63,8 +63,8 @@ def create_food_menu_table():
             cocok_untuk _text NULL,
             embedding public.vector NULL,
             created_at timestamp DEFAULT CURRENT_TIMESTAMP NULL,
-            CONSTRAINT food_menu_2_nama_menu_key UNIQUE (nama_menu),
-            CONSTRAINT food_menu_2_pkey PRIMARY KEY (id)
+            CONSTRAINT food_menu_nama_menu_key UNIQUE (nama_menu),
+            CONSTRAINT food_menu_pkey PRIMARY KEY (id)
         );
         """
         
@@ -76,17 +76,17 @@ def create_food_menu_table():
         # Create indexes
         indexes_sql = [
             """
-            CREATE INDEX IF NOT EXISTS food_menu_2_embedding_idx 
+            CREATE INDEX IF NOT EXISTS food_menu_embedding_idx 
             ON public.food_menu_2 USING ivfflat (embedding vector_cosine_ops) 
             WITH (lists='100');
             """,
             """
             CREATE INDEX IF NOT EXISTS idx_kalori 
-            ON public.food_menu_2 USING btree (kalori);
+            ON public.food_menu USING btree (kalori);
             """,
             """
             CREATE INDEX IF NOT EXISTS idx_kategori 
-            ON public.food_menu_2 USING btree (kategori);
+            ON public.food_menu USING btree (kategori);
             """
         ]
         
@@ -104,7 +104,7 @@ def create_food_menu_table():
         cursor.execute("""
             SELECT column_name, data_type 
             FROM information_schema.columns 
-            WHERE table_name = 'food_menu_2'
+            WHERE table_name = 'food_menu'
             ORDER BY ordinal_position;
         """)
         columns = cursor.fetchall()
